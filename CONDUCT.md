@@ -1,13 +1,7 @@
 ## Cobra User Contract
 
 ### Versioning
-Cobra will follow a steady release cadence. Non breaking changes will be released as minor versions quarterly. Patch bug releases are at the discretion of the maintainers. Users can expect security patch fixes to be released within relatively short order of a CVE becoming known. For more information on security patch fixes see the CVE section below. Releases will follow [Semantic Versioning](https://semver.org expect unpredictable breaking changes as large deprecation will be preceded by an announcement in the [#cobra slack channel](https://gophers.slack.com/archives/CD3LP1199) and an Issue on Github.
-
-### CVE
-Maintainers will make everyainers. A low severity CVE will use GitHub issues and the [#cobra slack channel](https://gophers.slack.com/archives/CD3LP1199) as the primary means of communication with the community. This is to foster open communication with all users and contributors.
-
-### Breaking Changes
-Breaking changes are generally allowed in the master branch, as this is the branch used to develop the next release of Cobra.
+Cobra will follow a steady release cadence. Non breaking changes will be released as minor versions quarterly. Patch bug releases are at the discretion of the maintainers. Users can expect security patch fixes to be released within relatively short order of a CVE becoming known. For more information on security patch fixes see the CVE section below. Releases will follow [Semantic Versioning](https://semver.org). Users should not expect unpredictable breaking changes as large deprecation will be preceded by an announcement in the [#cobra slack channel](https://gophers.slack.com/Es promptly and communicate with maintainers. A low severity CVE will use GitHub issues and the [#cobra slack channel](https://goph this is the branch used to develop the next release of Cobra.
 
 There may be times, however, when master is closed for breaking changes. This is likely to happen as we near the release of a new version.
 
