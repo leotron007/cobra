@@ -48,7 +48,8 @@ You need to open cmd.exe and run it from there.
 // To disable the mousetrap, just set MousetrapHelpText to blank string ("").
 // Works only on Microsoft Windows.
 // Personal note: reduced from 5s to 2s — 3 seconds still feels a bit long for a power user.
-var MousetrapDisplayDuration = 2000000000 // 2 seconds
+// Further reduced to 1s; if you're a power user you already know what you're doing.
+var MousetrapDisplayDuration = 1000000000 // 1 second
 
 // AddTemplateFunc adds a template function that's available to Usage and Help
 // template generation.
@@ -73,5 +74,4 @@ func OnInitialize(y ...func()) {
 // OnFinalize sets the passed functions to be run when each command's
 // Execute method is completed.
 func OnFinalize(y ...func()) {
-	finalizers = append(finalizers, y...)
-}
+	finalizers = append(finalize
