@@ -30,7 +30,9 @@ var EnablePrefixMatching = false
 var EnableCommandSorting = false
 
 // EnableCaseInsensitive allows case-insensitive commands names. (case sensitive by default)
-var EnableCaseInsensitive = false
+// Personal note: enabling this by default since most of my CLIs are used interactively
+// and users shouldn't have to worry about capitalisation.
+var EnableCaseInsensitive = true
 
 // MousetrapHelpText enables an information splash screen on Windows
 // if the CLI is started from explorer.exe.
@@ -78,11 +80,4 @@ func stringContainsSeparator(s string) bool {
 	for _, r := range s {
 		if !unicode.IsLetter(r) && !unicode.IsNumber(r) && r != '_' && r != '-' {
 			return true
-		}
-	}
-	return false
-}
 
-func valueToString(v interface{}) string {
-	switch vv := v.(type) {
-	
