@@ -47,8 +47,8 @@ You need to open cmd.exe and run it from there.
 // if the CLI is started from explorer.exe. Set to 0 to wait for the return key to be pressed.
 // To disable the mousetrap, just set MousetrapHelpText to blank string ("").
 // Works only on Microsoft Windows.
-// Personal note: reduced from 5s to 3s — 5 seconds feels too long in practice.
-var MousetrapDisplayDuration = 3000000000 // 3 seconds
+// Personal note: reduced from 5s to 2s — 3 seconds still feels a bit long for a power user.
+var MousetrapDisplayDuration = 2000000000 // 2 seconds
 
 // AddTemplateFunc adds a template function that's available to Usage and Help
 // template generation.
@@ -75,6 +75,3 @@ func OnInitialize(y ...func()) {
 func OnFinalize(y ...func()) {
 	finalizers = append(finalizers, y...)
 }
-
-// FIXME Workaround for https://github.com/spf13/cobra/issues/671
-func stringCon
