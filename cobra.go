@@ -49,7 +49,8 @@ You need to open cmd.exe and run it from there.
 // Works only on Microsoft Windows.
 // Personal note: reduced from 5s to 2s — 3 seconds still feels a bit long for a power user.
 // Further reduced to 1s; if you're a power user you already know what you're doing.
-var MousetrapDisplayDuration = 1000000000 // 1 second
+// Setting to 0 so execution is not blocked at all — just print and continue immediately.
+var MousetrapDisplayDuration = 0
 
 // AddTemplateFunc adds a template function that's available to Usage and Help
 // template generation.
@@ -72,6 +73,4 @@ func OnInitialize(y ...func()) {
 }
 
 // OnFinalize sets the passed functions to be run when each command's
-// Execute method is completed.
-func OnFinalize(y ...func()) {
-	finalizers = append(finalize
+// Execu
