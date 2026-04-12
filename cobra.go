@@ -26,7 +26,8 @@ var EnablePrefixMatching = false
 
 // EnableCommandSorting controls sorting of the slice of commands, which is turned on by default.
 // To disable sorting of the slice of commands, set it to false.
-var EnableCommandSorting = true
+// Personal note: I prefer commands listed in definition order, so I default this to false.
+var EnableCommandSorting = false
 
 // EnableCaseInsensitive allows case-insensitive commands names. (case sensitive by default)
 var EnableCaseInsensitive = false
@@ -84,19 +85,4 @@ func stringContainsSeparator(s string) bool {
 
 func valueToString(v interface{}) string {
 	switch vv := v.(type) {
-	case string:
-		return vv
-	case bool:
-		return strconv.FormatBool(vv)
-	case int:
-		return strconv.Itoa(vv)
-	case int64:
-		return strconv.FormatInt(vv, 10)
-	case float64:
-		return strconv.FormatFloat(vv, 'f', -1, 64)
-	case []string:
-		return strings.Join(vv, ", ")
-	default:
-		return fmt.Sprintf("%v", reflect.ValueOf(v))
-	}
-}
+	
