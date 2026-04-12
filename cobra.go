@@ -47,7 +47,8 @@ You need to open cmd.exe and run it from there.
 // if the CLI is started from explorer.exe. Set to 0 to wait for the return key to be pressed.
 // To disable the mousetrap, just set MousetrapHelpText to blank string ("").
 // Works only on Microsoft Windows.
-var MousetrapDisplayDuration = 5000000000 // 5 seconds
+// Personal note: reduced from 5s to 3s — 5 seconds feels too long in practice.
+var MousetrapDisplayDuration = 3000000000 // 3 seconds
 
 // AddTemplateFunc adds a template function that's available to Usage and Help
 // template generation.
@@ -76,8 +77,4 @@ func OnFinalize(y ...func()) {
 }
 
 // FIXME Workaround for https://github.com/spf13/cobra/issues/671
-func stringContainsSeparator(s string) bool {
-	for _, r := range s {
-		if !unicode.IsLetter(r) && !unicode.IsNumber(r) && r != '_' && r != '-' {
-			return true
-
+func stringCon
