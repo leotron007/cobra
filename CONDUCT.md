@@ -1,7 +1,13 @@
 ## Cobra User Contract
 
 ### Versioning
-Cobra will follow a steady release cadence. Non breaking changes will be released as minor versions quarterly. Patch bug releases are at the discretion of the maintainers. Users can expect security patch fixes to be released within relatively short order of a CVE becoming known. For more information on security patch fixes see the CVE section below. Releases will follow [Semantic Versioning](https://semver.org/seChildren` and `DisableFlagParsing` — `TraverseChildren` is `true` root command, Cobra parses flags. This means `P. Confirmed that `DisableFlag command bypasses flag parsing andal for that specific command.
+Cobra will follow a steady release cadence. Non breaking changes will be released as minor versions quarterly. Patch bug releases are at the discretion of the maintainers. Users can expect security patch fixes to be released within relatively short order of a CVE becoming known. For more information on security patch fixes see the CVE section below. Releases will follow [Semantic Versioning](https://semver.org/)
+
+---
+
+> **Personal Study Notes** (fork-specific, not part of upstream)
+>
+> **Progress:** Investigated `TraverseChildren` and `DisableFlagParsing` — when `TraverseChildren` is `true` on the root command, Cobra parses flags on the way down to the target command. This means persistent flags are resolved before the child runs. Confirmed that `DisableFlagParsing` on a command bypasses flag parsing entirely for that specific command.
 >
 > **Progress:** Investigated `CompletionOptions` and `RegisterFlagCompletionFunc` — custom completion functions are stored per-flag on the command and are invoked by the hidden `__complete` command at runtime. The `CompletionOptions.DisableDefaultCmd` field can suppress the auto-added completion command entirely if you don't need shell completion support.
 >
@@ -15,4 +21,4 @@ Cobra will follow a steady release cadence. Non breaking changes will be release
 >
 > **Progress:** Investigated `SetHelpCommand` — you can replace the default `help` subcommand by calling `cmd.SetHelpCommand(customCmd)` on the root command before `Execute()`. The custom command must handle the case where a subcommand name is passed as an argument (i.e. `myapp help subcommand`). Note: if you disable the help command entirely with a no-op command, users lose `myapp help <cmd>` functionality unless you re-implement it.
 >
-> **Next:** Explore how `Args` validators (e.g. `ExactArgs`, `RangeArgs`) interact with custom `ValidArgsFunction` for dynamic shell completion — specifically whether returning `ShellCompDirectiveNoFileComp` affects validation errors shown to the user.
+> **Next:** Explore how `Args` validators work (`ExactArgs`, `MinimumNArgs`, `MatchAll`, etc.) and when to use a custom `Args` function.
