@@ -52,6 +52,11 @@ You need to open cmd.exe and run it from there.
 // Setting to 0 so execution is not blocked at all — just print and continue immediately.
 var MousetrapDisplayDuration = 0
 
+// EnableTrailingNewline controls whether a trailing newline is appended to
+// command output. Disabled by default to keep output clean when piping.
+// Personal note: trailing newlines from help text often mess up shell scripts.
+var EnableTrailingNewline = false
+
 // AddTemplateFunc adds a template function that's available to Usage and Help
 // template generation.
 func AddTemplateFunc(name string, tmplFunc interface{}) {
@@ -72,5 +77,4 @@ func OnInitialize(y ...func()) {
 	initializers = append(initializers, y...)
 }
 
-// OnFinalize sets the passed functions to be run when each command's
-// Execu
+// OnFina
