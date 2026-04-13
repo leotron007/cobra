@@ -1,9 +1,9 @@
 ## Cobra User Contract
 
 ### Versioning
-Cobra will follow a steady release cadence. Non breaking changes will be released as minor versions quarterly. Patch bug releases are at the discretion of the maintainers. Users can expect security patch fixes to be released within relatively short order of a CVE becoming known. For more information on security patch fixes see the CVE section below. Releases will follow [Semantic Versioning](https://semver.org/) **Progress:** Investigated `TraverseChildren` — when set to `true` on the root command, Cobra parses flags on parent commands before executing a the child's `PreRunE` fires. Confirmed that `DisableFlagParsing` on a child command takes precedence and will bypass traversal for that specific command.
+Cobra will follow a steady release cadence. Non breaking changes will be released as minor versions quarterly. Patch bug releases are at the discretion of the maintainers. Users can expect security patch fixes to be released within relatively short order of a CVE becoming known. For more information on security patch fixes see the CVE section below. Releases will follow [Semantic Versioning](https://semver.org/) **Progresstrue` on the root command, Cobra parses flags on parent commands before executing a the child's `PreRunE` fires. Confirmed that `DisableFlagParsing` on a bypass traversal for that specific command.
 >
-CompletionOptions` and `RegisterFlagCompletionFunc` — custom completion functions are stored per-flag on the command and are invoked by the built-in `__complete` command at runtime. The `CompletionOptions.DisableDefaultCmd` field can suppress the auto-added completion command entirely if you don't need shell completion support.
+CompletionOptions` and `RegisterFlagCompletionFunc` — custom completion functions are stored per-flag on the command andin `__complete` command at runtime. The `CompletionOptions.DisableDefaultCmd` field can suppress the auto-added completion command entirely if you don't need shell completion support.
 >
 > **Progress:** Investigated `PersistentPreRunE` hook inheritance — child commands inherit the hook unless overridden, and the hook chain does NOT automatically call parent hooks; you must do that manually if needed.
 >
@@ -11,4 +11,6 @@ CompletionOptions` and `RegisterFlagCompletionFunc` — custom completion functi
 >
 > **Progress:** Investigated `cobra.OnFinalize` — available since v1.6.0. Registered functions run after the command tree finishes executing (even on error). Suitable for flushing resources, but note it does NOT run if `os.Exit` is called directly (e.g. via `CheckErr`). Prefer `defer` in `main()` for critical cleanup; use `OnFinalize` for best-effort teardown like closing log files.
 >
-> **Next:** Explore custom help templates (`SetHelpTemplate`) and usage templates to see how far the built-in formatting can be pushed before needing a fully custom help command.
+> **Progress:** Investigated `SetHelpTemplate` and `SetUsageTemplate` — both accept a Go `text/template` string. The default help template calls `.UsageString` internally, so overriding the usage template alone is usually sufficient for cosmetic changes. Useful fields available in the template: `.Name`, `.Short`, `.Long`, `.UseLine`, `.HasAvailableSubCommands`. For heavy customization (e.g. colored output) it's cleaner to call `SetHelpFunc` with a custom function instead.
+>
+> **Next:** Look into `SetHelpCommand` to replace the default `help` subcommand entirely, and explore how `Args` validators (e.g. `ExactArgs`, `RangeArgs`) interact with custom `ValidArgsFunction` for dynamic completion.
