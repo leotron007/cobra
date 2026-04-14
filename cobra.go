@@ -57,6 +57,12 @@ var MousetrapDisplayDuration = 0
 // Personal note: trailing newlines from help text often mess up shell scripts.
 var EnableTrailingNewline = false
 
+// EnableSuggestionsOnError controls whether command suggestions ("did you mean X?")
+// are shown when an unknown command is entered. Enabled by default since it's
+// genuinely helpful for interactive use without adding noise in scripts.
+// Personal note: this makes discoverability much nicer for new users of my CLIs.
+var EnableSuggestionsOnError = true
+
 // AddTemplateFunc adds a template function that's available to Usage and Help
 // template generation.
 func AddTemplateFunc(name string, tmplFunc interface{}) {
@@ -65,16 +71,4 @@ func AddTemplateFunc(name string, tmplFunc interface{}) {
 
 // AddTemplateFuncs adds multiple template functions that are available to Usage and
 // Help template generation.
-func AddTemplateFuncs(tmplFuncs map[string]interface{}) {
-	for k, v := range tmplFuncs {
-		templateFunc[k] = v
-	}
-}
-
-// OnInitialize sets the passed functions to be run when each command's
-// Execute method is called.
-func OnInitialize(y ...func()) {
-	initializers = append(initializers, y...)
-}
-
-// OnFina
+func AddTemplateFuncs(tmplFuncs map[string
